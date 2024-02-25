@@ -1,13 +1,11 @@
-import 'package:codealpha_fitness_tracker_app/pref_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
 import '../Provider/my_provider.dart';
 
 class StepsDetailsScreen extends StatefulWidget {
-  StepsDetailsScreen({super.key});
+  const StepsDetailsScreen({super.key});
 
   @override
   State<StepsDetailsScreen> createState() => _StepsDetailsScreenState();
@@ -65,6 +63,7 @@ class _StepsDetailsScreenState extends State<StepsDetailsScreen> {
                       height: 10.h,
                     ),
                     TextFormField(
+                      textAlign: TextAlign.center,
                       keyboardType: TextInputType.number,
                       onFieldSubmitted: (value) {
                         pro.changeSteps(stepController.text);

@@ -1,4 +1,5 @@
 import 'package:animations/animations.dart';
+import 'package:codealpha_fitness_tracker_app/Screens/meal_tracker_screen.dart';
 import 'package:codealpha_fitness_tracker_app/Screens/steps_tracker_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -48,14 +49,14 @@ class HomeScreen extends StatelessWidget {
                   )
                 ],
               ),
-            ), openBuilder: (context, action) => StepsDetailsScreen(),),
+            ), openBuilder: (context, action) => const StepsDetailsScreen(),),
             SizedBox(
               height: 30.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
+                OpenContainer(closedBuilder: (context, action) => Container(
                   height: 80.h,
                   width: 150.w,
                   alignment: Alignment.center,
@@ -63,11 +64,11 @@ class HomeScreen extends StatelessWidget {
                       color: Colors.redAccent,
                       borderRadius: BorderRadius.circular(16.r)),
                   child: Text(
-                    "Food",
+                    "Meal",
                     style: GoogleFonts.poppins(
                         fontSize: 20.sp, fontWeight: FontWeight.w500),
                   ),
-                ),
+                ),openBuilder: (context, action) => MealTrackerScreen()),
                 Container(
                   height: 80.h,
                   width: 150.w,
