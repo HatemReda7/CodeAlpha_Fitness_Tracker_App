@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Layout/home_screen.dart';
+import 'Provider/my_provider.dart';
+import 'pref_helper.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  PrefsHelper.prefs = await SharedPreferences.getInstance();
+  runApp(ChangeNotifierProvider(
+      create: (context) =>
+      MyProvider()
+        ..init(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

@@ -1,6 +1,11 @@
+import 'package:animations/animations.dart';
+import 'package:codealpha_fitness_tracker_app/Screens/steps_tracker_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import '../Provider/my_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String routeName = "HomeScreen";
@@ -9,16 +14,20 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var pro = Provider.of<MyProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Fitness Tracker"),
+        centerTitle: true,
+        toolbarHeight: 60.h,
+        title: Text("Fitness Tracker",style: GoogleFonts.poppins(
+            fontSize: 22.sp, fontWeight: FontWeight.w500),),
       ),
       body: Padding(
         padding: const EdgeInsets.all(18.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
+            OpenContainer(closedBuilder: (context, action) => Container(
               decoration: BoxDecoration(
                 color: Colors.greenAccent,
                 borderRadius: BorderRadius.circular(16),
@@ -28,18 +37,18 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    "20",
+                    "2041",
                     style: GoogleFonts.poppins(
                         fontSize: 18.sp, fontWeight: FontWeight.w500),
                   ),
                   Text(
-                    "/6000 steps",
+                    "/${pro.stepsCounter} steps",
                     style: GoogleFonts.poppins(
                         fontSize: 18.sp, fontWeight: FontWeight.w500),
                   )
                 ],
               ),
-            ),
+            ), openBuilder: (context, action) => StepsDetailsScreen(),),
             SizedBox(
               height: 30.h,
             ),
