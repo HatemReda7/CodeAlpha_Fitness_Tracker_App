@@ -68,7 +68,7 @@ class HomeScreen extends StatelessWidget {
                     style: GoogleFonts.poppins(
                         fontSize: 20.sp, fontWeight: FontWeight.w500),
                   ),
-                ),openBuilder: (context, action) => MealTrackerScreen()),
+                ),openBuilder: (context, action) => const MealTrackerScreen()),
                 Container(
                   height: 80.h,
                   width: 150.w,

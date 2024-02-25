@@ -1,12 +1,9 @@
-import 'dart:ui';
-
-import 'package:codealpha_fitness_tracker_app/models/meal_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MealTrackerScreen extends StatefulWidget {
-  MealTrackerScreen({super.key});
+  const MealTrackerScreen({super.key});
 
   @override
   State<MealTrackerScreen> createState() => _MealTrackerScreenState();
@@ -124,13 +121,13 @@ class _MealTrackerScreenState extends State<MealTrackerScreen> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      MealModel mealModel = MealModel(
-                          mealName: mealNameController.text,
-                          mealComponents: mealComponentController.text,
-                          date: DateTime.now().millisecondsSinceEpoch);
-                      // FirebaseFunctions.addMeal(mealModel);
-                    }
+                    // if (formKey.currentState!.validate()) {
+                    //   MealModel mealModel = MealModel(
+                    //       mealName: mealNameController.text,
+                    //       mealComponents: mealComponentController.text,
+                    //       date: DateTime.now().millisecondsSinceEpoch);
+                    //   // FirebaseFunctions.addMeal(mealModel);
+                    // }
                   },
                   style: ButtonStyle(
                     backgroundColor: const MaterialStatePropertyAll(Colors.blue),
