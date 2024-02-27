@@ -2,6 +2,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:codealpha_fitness_tracker_app/models/meal_model.dart';
 
+import '../../models/workout_model.dart';
+
 class FirebaseFunctions {
 
   static CollectionReference<MealModel> getMealCollection(){
@@ -42,6 +44,46 @@ class FirebaseFunctions {
 
   static Stream<QuerySnapshot<MealModel>> getMeal() {
     return getMealCollection().snapshots();
+  }
+
+  static CollectionReference<WorkoutModel> getWorkoutCollection(){
+    return FirebaseFirestore.instance.collection("Workouts").withConverter<WorkoutModel>(
+      fromFirestore: (snapshot, _) {
+        return WorkoutModel.fromJson(snapshot.data()!);
+      },
+      toFirestore: (value, _) {
+        return value.toJson();
+      },);
+  }
+
+  static void addWorkout(workoutModel) {
+    var collection = getWorkoutCollection();
+    var docRef = collection.doc();
+    workoutModel.id = docRef.id;
+    docRef.set(workoutModel);
+  }
+
+  static void deleteWorkout(String id) {
+    getWorkoutCollection().doc(id).delete();
+  }
+
+  // static void editWorkout(WorkoutModel workout){
+  //   getWorkoutCollection().doc(workout.id).update(workout.toJson());
+  // }
+
+  static void deleteWorkoutHistory() async{
+    final instance = FirebaseFirestore.instance;
+    final batch = instance.batch();
+    var collection = instance.collection('Workouts');
+    var snapshots = await collection.get();
+    for (var doc in snapshots.docs) {
+      batch.delete(doc.reference);
+    }
+    await batch.commit();
+  }
+
+  static Stream<QuerySnapshot<WorkoutModel>> getWorkout() {
+    return getWorkoutCollection().snapshots();
   }
 
   // static CollectionReference<> getQuizCollection(){
