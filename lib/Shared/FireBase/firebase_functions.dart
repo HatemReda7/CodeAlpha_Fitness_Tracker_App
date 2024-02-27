@@ -6,6 +6,8 @@ import '../../models/workout_model.dart';
 
 class FirebaseFunctions {
 
+  //  Meal Functions  //
+
   static CollectionReference<MealModel> getMealCollection(){
     return FirebaseFirestore.instance.collection("Meals").withConverter<MealModel>(
       fromFirestore: (snapshot, _) {
@@ -46,6 +48,8 @@ class FirebaseFunctions {
     return getMealCollection().snapshots();
   }
 
+  //  Workout Functions  //
+
   static CollectionReference<WorkoutModel> getWorkoutCollection(){
     return FirebaseFirestore.instance.collection("Workouts").withConverter<WorkoutModel>(
       fromFirestore: (snapshot, _) {
@@ -85,6 +89,8 @@ class FirebaseFunctions {
   static Stream<QuerySnapshot<WorkoutModel>> getWorkout() {
     return getWorkoutCollection().snapshots();
   }
+
+  //  //
 
   // static CollectionReference<> getQuizCollection(){
   //   return FirebaseFirestore.instance.collection("Quizzes").withConverter<>(
