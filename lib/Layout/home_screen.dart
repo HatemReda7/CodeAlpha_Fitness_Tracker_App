@@ -1,5 +1,5 @@
 import 'package:animations/animations.dart';
-import 'package:codealpha_fitness_tracker_app/Screens/meal_tracker_screen.dart';
+import 'package:codealpha_fitness_tracker_app/Screens/Meal%20Tracker%20Screen/meal_tracker_screen.dart';
 import 'package:codealpha_fitness_tracker_app/Screens/steps_tracker_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../Shared/FireBase/firebase_functions.dart';
+import '../../models/meal_model.dart';
+import 'meal_item.dart';
+
 class MealTrackerScreen extends StatefulWidget {
   const MealTrackerScreen({super.key});
 
@@ -14,6 +18,8 @@ class _MealTrackerScreenState extends State<MealTrackerScreen> {
   var formKey = GlobalKey<FormState>();
   TextEditingController mealNameController = TextEditingController();
   TextEditingController mealComponentController = TextEditingController();
+
+  // How Can I fix the issue when added multiple lines with the TextFormField? There is always an overflowed widgets
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +35,7 @@ class _MealTrackerScreenState extends State<MealTrackerScreen> {
             child: Icon(Icons.arrow_back_rounded,size: 22.sp,)),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(18.0),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           key: formKey,
           child: Column(
@@ -75,7 +81,7 @@ class _MealTrackerScreenState extends State<MealTrackerScreen> {
                 ),
               ),
               SizedBox(
-                height: 30.h,
+                height: 18.h,
               ),
               TextFormField(
                 validator: (value) {
@@ -85,7 +91,7 @@ class _MealTrackerScreenState extends State<MealTrackerScreen> {
                   return null;
                 },
                 minLines: 1,
-                maxLines: 10,
+                maxLines: 3, // 10
                 style: GoogleFonts.inter(
                     color: Colors.black,
                     fontWeight: FontWeight.w400,
@@ -117,17 +123,19 @@ class _MealTrackerScreenState extends State<MealTrackerScreen> {
                 ),
               ),
               SizedBox(
-                height: 50.h,
+                height: 30.h,
               ),
               ElevatedButton(
                   onPressed: () {
-                    // if (formKey.currentState!.validate()) {
-                    //   MealModel mealModel = MealModel(
-                    //       mealName: mealNameController.text,
-                    //       mealComponents: mealComponentController.text,
-                    //       date: DateTime.now().millisecondsSinceEpoch);
-                    //   // FirebaseFunctions.addMeal(mealModel);
-                    // }
+                    if (formKey.currentState!.validate()) {
+                      // var time= ;
+                      MealModel mealModel = MealModel(
+                          mealName: mealNameController.text,
+                          mealComponents: mealComponentController.text,
+                          date: DateTime.now().millisecondsSinceEpoch
+                          );
+                      FirebaseFunctions.addMeal(mealModel);
+                    }
                   },
                   style: ButtonStyle(
                     backgroundColor: const MaterialStatePropertyAll(Colors.blue),
@@ -137,7 +145,47 @@ class _MealTrackerScreenState extends State<MealTrackerScreen> {
                   child: Text(
                     "Add Meal!",
                     style: TextStyle(fontSize: 18.sp,color: Colors.black),
-                  ))
+                  )),
+              SizedBox(height: 20.h ,),
+              ElevatedButton(
+                  onPressed: () {
+                      FirebaseFunctions.deleteMealHistory();
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: const MaterialStatePropertyAll(Colors.red),
+                    fixedSize:  MaterialStatePropertyAll(Size(200.w,40.h)),
+                      shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.r)))),
+                  child: Text(
+                    "Delete All History",
+                    style: TextStyle(fontSize: 18.sp,color: Colors.black),
+                  )),
+              SizedBox(height: 20.h ,),
+              StreamBuilder(
+                stream: FirebaseFunctions.getMeal(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  if (snapshot.hasError) {
+                    return const Center(
+                        child: Text(
+                          "Something went wrong",
+                          style: TextStyle(color: Colors.white),
+                        ));
+                  }
+                  List<MealModel> meals =
+                      snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
+                  return Expanded(
+                    child: ListView.builder(
+                      itemBuilder: (context, index) {
+                        return MealItem(mealModel: meals[index]);
+                      },
+                      itemCount: meals.length,
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),
