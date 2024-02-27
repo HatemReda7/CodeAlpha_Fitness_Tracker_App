@@ -1,6 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:codealpha_fitness_tracker_app/Screens/Meal%20Tracker%20Screen/meal_tracker_screen.dart';
 import 'package:codealpha_fitness_tracker_app/Screens/Step%20Tracking%20Screen/steps_tracker_screen.dart';
+import 'package:codealpha_fitness_tracker_app/Screens/Workout%20History%20Screen/workout_history_screen.dart';
 import 'package:codealpha_fitness_tracker_app/Screens/Workout%20Screen/workout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -130,21 +131,23 @@ class HomeScreen extends StatelessWidget {
                                 fontSize: 20.sp, fontWeight: FontWeight.w500),
                           ),
                         ),
-                    openBuilder: (context, action) => WorkoutScreen()),
-                Container(
-                  height: 80.h,
-                  width: 150.w,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      color: Colors.yellowAccent,
-                      borderRadius: BorderRadius.circular(16.r)),
-                  child: Text(
-                    "Workout History",
-                    style: GoogleFonts.poppins(
-                        fontSize: 20.sp, fontWeight: FontWeight.w500),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
+                    openBuilder: (context, action) => const WorkoutScreen()),
+                OpenContainer(
+                    closedBuilder: (context, action) => Container(
+                      height: 80.h,
+                      width: 150.w,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: Colors.yellowAccent,
+                          borderRadius: BorderRadius.circular(16.r)),
+                      child: Text(
+                        "Workout History",
+                        style: GoogleFonts.poppins(
+                            fontSize: 20.sp, fontWeight: FontWeight.w500),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    openBuilder: (context, action) => const WorkoutHistoryScreen()),
               ],
             ),
           ],

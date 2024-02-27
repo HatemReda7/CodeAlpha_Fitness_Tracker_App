@@ -213,7 +213,6 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                 ElevatedButton(
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
-                        // var time= ;
                         WorkoutModel workoutModel = WorkoutModel(
                             workoutName: workoutNameController.text,
                             workoutComponents: workoutComponentController.text,
@@ -221,6 +220,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                             numOfReps: workoutNumOfRepsController.text,
                             date: DateTime.now().millisecondsSinceEpoch);
                         FirebaseFunctions.addWorkout(workoutModel);
+                        Navigator.pop(context);
                       }
                     },
                     style: ButtonStyle(
@@ -231,23 +231,6 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                             borderRadius: BorderRadius.circular(10.r)))),
                     child: Text(
                       "Add Workout!",
-                      style: TextStyle(fontSize: 18.sp, color: Colors.black),
-                    )),
-                SizedBox(
-                  height: 50.h,
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      FirebaseFunctions.deleteWorkoutHistory();
-                    },
-                    style: ButtonStyle(
-                        backgroundColor:
-                            const MaterialStatePropertyAll(Colors.red),
-                        fixedSize: MaterialStatePropertyAll(Size(200.w, 50.h)),
-                        shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.r)))),
-                    child: Text(
-                      "Delete All History",
                       style: TextStyle(fontSize: 18.sp, color: Colors.black),
                     )),
               ],
