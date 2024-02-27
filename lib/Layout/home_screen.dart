@@ -4,11 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../Provider/my_provider.dart';
+import '../Screens/Drawer Tab/drawer_tab.dart';
 import '../Screens/Meal Tracker Screen/meal_tracker_screen.dart';
 import '../Screens/Step Tracking Screen/steps_tracker_screen.dart';
 import '../Screens/Workout History Screen/workout_history_screen.dart';
 import '../Screens/Workout Screen/workout_screen.dart';
-import '../Shared/Constants/delete_all_info_button.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "HomeScreen";
@@ -24,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     var pro = Provider.of<MyProvider>(context);
     return Scaffold(
+      drawer: const DrawerTab(),
       appBar: AppBar(
         centerTitle: true,
         toolbarHeight: 60.h,
@@ -151,8 +152,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         const WorkoutHistoryScreen()),
               ],
             ),
-            const Spacer(),
-            const DeleteAllInfoButton()
           ],
         ),
       ),
