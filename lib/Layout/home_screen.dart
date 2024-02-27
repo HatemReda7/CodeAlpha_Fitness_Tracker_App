@@ -1,20 +1,25 @@
 import 'package:animations/animations.dart';
-import 'package:codealpha_fitness_tracker_app/Screens/Meal%20Tracker%20Screen/meal_tracker_screen.dart';
-import 'package:codealpha_fitness_tracker_app/Screens/Step%20Tracking%20Screen/steps_tracker_screen.dart';
-import 'package:codealpha_fitness_tracker_app/Screens/Workout%20History%20Screen/workout_history_screen.dart';
-import 'package:codealpha_fitness_tracker_app/Screens/Workout%20Screen/workout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
 import '../Provider/my_provider.dart';
+import '../Screens/Meal Tracker Screen/meal_tracker_screen.dart';
+import '../Screens/Step Tracking Screen/steps_tracker_screen.dart';
+import '../Screens/Workout History Screen/workout_history_screen.dart';
+import '../Screens/Workout Screen/workout_screen.dart';
+import '../Shared/Constants/delete_all_info_button.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const String routeName = "HomeScreen";
 
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     var pro = Provider.of<MyProvider>(context);
@@ -34,39 +39,32 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             OpenContainer(
+              closedElevation: 0,
               closedBuilder: (context, action) => Container(
                 decoration: BoxDecoration(
                   color: Colors.greenAccent,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 alignment: Alignment.center,
-                height: 60.h,
-                child: Column(
-                  children: [
-                    Text(
-                      "2041",
-                      style: GoogleFonts.poppins(
-                          fontSize: 18.sp, fontWeight: FontWeight.w500),
-                    ),
-                    Text(
-                      "/${pro.stepsCounter} steps",
-                      style: GoogleFonts.poppins(
-                          fontSize: 18.sp, fontWeight: FontWeight.w500),
-                    )
-                  ],
+                height: 80.h,
+                child: Text(
+                  "2041 / ${pro.stepsCounter} steps",
+                  style: GoogleFonts.poppins(
+                      fontSize: 18.sp, fontWeight: FontWeight.w500),
                 ),
               ),
               openBuilder: (context, action) => const StepsDetailsScreen(),
             ),
             SizedBox(
-              height: 30.h,
+              height: 40.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 OpenContainer(
+                    closedElevation: 0,
                     closedBuilder: (context, action) => Container(
-                          height: 80.h,
+                          height: 100.h,
                           width: 150.w,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -81,7 +79,7 @@ class HomeScreen extends StatelessWidget {
                     openBuilder: (context, action) =>
                         const MealTrackerScreen()),
                 Container(
-                  height: 80.h,
+                  height: 100.h,
                   width: 150.w,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
@@ -96,7 +94,7 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 30.h,
+              height: 40.h,
             ),
             Container(
               decoration: BoxDecoration(
@@ -104,7 +102,7 @@ class HomeScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
               ),
               alignment: Alignment.center,
-              height: 60.h,
+              height: 80.h,
               child: Text(
                 "BPM",
                 style: GoogleFonts.poppins(
@@ -112,14 +110,15 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 30.h,
+              height: 40.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 OpenContainer(
+                    closedElevation: 0,
                     closedBuilder: (context, action) => Container(
-                          height: 80.h,
+                          height: 100.h,
                           width: 150.w,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -133,23 +132,27 @@ class HomeScreen extends StatelessWidget {
                         ),
                     openBuilder: (context, action) => const WorkoutScreen()),
                 OpenContainer(
+                    closedElevation: 0,
                     closedBuilder: (context, action) => Container(
-                      height: 80.h,
-                      width: 150.w,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          color: Colors.yellowAccent,
-                          borderRadius: BorderRadius.circular(16.r)),
-                      child: Text(
-                        "Workout History",
-                        style: GoogleFonts.poppins(
-                            fontSize: 20.sp, fontWeight: FontWeight.w500),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    openBuilder: (context, action) => const WorkoutHistoryScreen()),
+                          height: 100.h,
+                          width: 150.w,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius: BorderRadius.circular(16.r)),
+                          child: Text(
+                            "Workout History",
+                            style: GoogleFonts.poppins(
+                                fontSize: 20.sp, fontWeight: FontWeight.w500),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                    openBuilder: (context, action) =>
+                        const WorkoutHistoryScreen()),
               ],
             ),
+            const Spacer(),
+            const DeleteAllInfoButton()
           ],
         ),
       ),

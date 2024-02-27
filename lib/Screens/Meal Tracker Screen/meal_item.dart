@@ -15,7 +15,7 @@ class MealItem extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(16.r),
       margin: EdgeInsets.all(16.r),
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(12.r),color: Colors.blueGrey),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(12.r),color: Colors.grey),
       child: Row(
         children: [
           Column(
