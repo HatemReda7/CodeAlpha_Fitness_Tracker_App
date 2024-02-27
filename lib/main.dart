@@ -1,3 +1,4 @@
+import 'package:codealpha_fitness_tracker_app/Shared/Styles/my_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       designSize: const Size(360, 690),
       builder: (context, child) =>
           MaterialApp(
+            theme: MyThemeData.lightTheme,
             locale: const Locale("en"),
             debugShowCheckedModeBanner: false,
             initialRoute: HomeScreen.routeName,

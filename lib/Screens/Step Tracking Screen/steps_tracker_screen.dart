@@ -1,6 +1,7 @@
+import 'package:codealpha_fitness_tracker_app/Shared/Constants/arrow_back_item.dart';
+import 'package:codealpha_fitness_tracker_app/Shared/Styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../Provider/my_provider.dart';
 
@@ -19,14 +20,8 @@ class _StepsDetailsScreenState extends State<StepsDetailsScreen> {
     var pro = Provider.of<MyProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Steps Tracker",style: GoogleFonts.poppins(
-            fontSize: 22.sp, fontWeight: FontWeight.w500),),
-        centerTitle: true,
-        leading: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Icon(Icons.arrow_back_rounded,size: 22.sp,)),
+        title: const Text("Steps Tracker"),
+        leading: const ArrowBackItem()
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
@@ -42,8 +37,7 @@ class _StepsDetailsScreenState extends State<StepsDetailsScreen> {
               width: 200.w,
               child: Text(
                 "2064 / ${pro.stepsCounter} steps",
-                style: GoogleFonts.poppins(
-                    fontSize: 18.sp, fontWeight: FontWeight.w500),
+                style: mediumText,
               ),
             ),
             SizedBox(
@@ -56,8 +50,7 @@ class _StepsDetailsScreenState extends State<StepsDetailsScreen> {
                   children: [
                     Text(
                       "Enter your target steps",
-                      style: GoogleFonts.poppins(
-                          fontSize: 16.sp, fontWeight: FontWeight.w500),
+                      style: smallText,
                     ),
                     SizedBox(
                       height: 10.h,
@@ -69,25 +62,17 @@ class _StepsDetailsScreenState extends State<StepsDetailsScreen> {
                         pro.changeSteps(stepController.text);
                         stepController = TextEditingController();
                       },
-                      style: GoogleFonts.inter(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14.sp),
+                      style: textFormFieldLabelStyle,
                       controller: stepController,
                       decoration: InputDecoration(
                         constraints:
                             BoxConstraints(maxHeight: 30.h, maxWidth: 150.w),
                         enabledBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black38)),
+                            borderSide: BorderSide(color: Colors.black38,width: 2)),
                         errorBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.red)),
                         focusedBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black38)),
-                        hintText: "",
-                        hintStyle: GoogleFonts.inter(
-                            color: Colors.black.withOpacity(.61),
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20.sp),
+                            borderSide: BorderSide(color: Colors.black38,width: 2))
                       ),
                     ),
                   ],
@@ -107,8 +92,7 @@ class _StepsDetailsScreenState extends State<StepsDetailsScreen> {
               width: 250.w,
               child: Text(
                 "Reset Steps",
-                style: GoogleFonts.poppins(
-                    fontSize: 18.sp, fontWeight: FontWeight.w500),
+                style: mediumText,
               ),
             ),
           ],

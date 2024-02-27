@@ -1,7 +1,7 @@
+import 'package:codealpha_fitness_tracker_app/Shared/Constants/arrow_back_item.dart';
+import 'package:codealpha_fitness_tracker_app/Shared/Styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../../Shared/FireBase/firebase_functions.dart';
 import '../../models/workout_model.dart';
 import 'workout_item.dart';
@@ -13,20 +13,10 @@ class WorkoutHistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Workout History",
-          style:
-          GoogleFonts.poppins(fontSize: 22.sp, fontWeight: FontWeight.w500),
         ),
-        centerTitle: true,
-        leading: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Icon(
-              Icons.arrow_back_rounded,
-              size: 22.sp,
-            )),
+        leading: const ArrowBackItem(),
       ),
       body: Padding(
         padding: EdgeInsets.all(18.0.r),
@@ -42,11 +32,17 @@ class WorkoutHistoryScreen extends StatelessWidget {
                   return const Center(
                       child: Text(
                         "Something went wrong",
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.black),
                       ));
                 }
                 List<WorkoutModel> workouts =
                     snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
+                if (workouts.isEmpty) {
+                  return Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20.h),
+                    child: Center(child: Text("No Workout History",style: smallText,),),
+                  );
+                }
                 return Expanded(
                   child: ListView.builder(
                     itemBuilder: (context, index) {

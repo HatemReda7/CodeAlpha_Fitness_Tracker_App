@@ -1,6 +1,7 @@
+import 'package:codealpha_fitness_tracker_app/Shared/Constants/arrow_back_item.dart';
+import 'package:codealpha_fitness_tracker_app/Shared/Styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../Shared/FireBase/firebase_functions.dart';
 import '../../models/workout_model.dart';
 
@@ -26,20 +27,8 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Workout Tracker",
-          style:
-              GoogleFonts.poppins(fontSize: 22.sp, fontWeight: FontWeight.w500),
-        ),
-        centerTitle: true,
-        leading: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Icon(
-              Icons.arrow_back_rounded,
-              size: 22.sp,
-            )),
+        title: const Text("Workout Tracker"),
+        leading: const ArrowBackItem(),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -56,35 +45,25 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                     }
                     return null;
                   },
-                  style: GoogleFonts.inter(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16.sp),
+                  style: textFormFieldLabelStyle,
+                  cursorColor: Colors.black,
                   controller: workoutNameController,
                   decoration: InputDecoration(
-                    label: Text(
-                      "Enter Workout Name",
-                      textAlign: TextAlign.left,
-                      style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w300,
-                          fontSize: 16.sp),
-                    ),
+                    label: const Text("Enter Workout Name",),
+                    labelStyle: textFormFieldLabelStyle,
                     constraints: BoxConstraints(maxWidth: 200.w),
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12.r),
+                      borderRadius: BorderRadius.circular(12.r,),
+                      borderSide: BorderSide(width: 1.5.w,color: Colors.black)
                     ),
                     errorBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.r),
-                      borderSide: const BorderSide(color: Colors.red),
+                      borderSide: BorderSide(color: Colors.red,width: 1.5.w),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.r),
+                        borderSide: BorderSide(width: 1.5.w,color: Colors.black)
                     ),
-                    hintStyle: GoogleFonts.inter(
-                        color: const Color(0xffA9A9A9).withOpacity(.61),
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20.sp),
                   ),
                 ),
                 SizedBox(
@@ -98,51 +77,32 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                     return null;
                   },
                   minLines: 1,
-                  maxLines: 3,
-                  // 10
-                  style: GoogleFonts.inter(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16.sp),
+                  maxLines: 3, // 10
+                  style: textFormFieldLabelStyle,
                   controller: workoutComponentController,
+                  cursorColor: Colors.black,
                   decoration: InputDecoration(
-                    label: Text(
-                      "Enter Workout Components",
-                      textAlign: TextAlign.left,
-                      style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w300,
-                          fontSize: 16.sp),
-                    ),
+                    label: const Text("Enter Workout Components",),
+                    labelStyle: textFormFieldLabelStyle,
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.r),
+                      borderSide: BorderSide(width: 1.5.w,color: Colors.black)
                     ),
                     errorBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.r),
-                      borderSide: const BorderSide(color: Colors.red),
+                      borderSide: BorderSide(color: Colors.red,width: 1.5.w),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.r),
+                      borderSide: BorderSide(width: 1.5.w,color: Colors.black)
                     ),
-                    hintStyle: GoogleFonts.inter(
-                        color: const Color(0xffA9A9A9).withOpacity(.61),
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20.sp),
                   ),
                 ),
                 SizedBox(
                   height: 20.h,
                 ),
-                Text(
-                  "Enter Number Of Sets",
-                  style: GoogleFonts.inter(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16.sp),
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
+                Text("Enter Number Of Sets", style: smallText),
+                SizedBox(height: 10.h,),
                 TextFormField(
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -152,33 +112,25 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                   },
                   textAlign: TextAlign.center,
                   keyboardType: TextInputType.number,
-                  style: GoogleFonts.inter(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 14.sp),
+                  cursorColor: Colors.black,
+                  style: textFormFieldLabelStyle,
                   controller: workoutNumOfSetsController,
                   decoration: InputDecoration(
                     constraints:
                         BoxConstraints(maxHeight: 30.h, maxWidth: 60.w),
-                    enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black)),
-                    errorBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red)),
-                    focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black)),
-                    labelText: "",
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black,width: 1.5.w)),
+                    errorBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.red,width: 1.5.w)),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black,width: 1.5.w)),
                   ),
                 ),
                 SizedBox(
                   height: 30.h,
                 ),
                 Text(
-                  "Enter Number Of Reps",
-                  style: GoogleFonts.inter(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16.sp),
-                ),
+                  "Enter Number Of Reps",style: smallText,),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -191,20 +143,18 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                   },
                   textAlign: TextAlign.center,
                   keyboardType: TextInputType.number,
-                  style: GoogleFonts.inter(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 14.sp),
+                  cursorColor: Colors.black,
+                  style: textFormFieldLabelStyle,
                   controller: workoutNumOfRepsController,
                   decoration: InputDecoration(
                     constraints:
                         BoxConstraints(maxHeight: 30.h, maxWidth: 60.w),
-                    enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black)),
-                    errorBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red)),
-                    focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black)),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black,width: 1.5.w)),
+                    errorBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.red,width: 1.5.w)),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black,width: 1.5.w)),
                   ),
                 ),
                 SizedBox(

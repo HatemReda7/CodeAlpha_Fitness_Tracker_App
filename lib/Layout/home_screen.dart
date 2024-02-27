@@ -1,7 +1,7 @@
 import 'package:animations/animations.dart';
+import 'package:codealpha_fitness_tracker_app/Shared/Styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../Provider/my_provider.dart';
 import '../Screens/Drawer Tab/drawer_tab.dart';
@@ -26,12 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       drawer: const DrawerTab(),
       appBar: AppBar(
-        centerTitle: true,
-        toolbarHeight: 60.h,
-        title: Text(
+        title: const Text(
           "Fitness Tracker",
-          style:
-              GoogleFonts.poppins(fontSize: 22.sp, fontWeight: FontWeight.w500),
         ),
       ),
       body: Padding(
@@ -50,8 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 80.h,
                 child: Text(
                   "2041 / ${pro.stepsCounter} steps",
-                  style: GoogleFonts.poppins(
-                      fontSize: 18.sp, fontWeight: FontWeight.w500),
+                  style: mediumText2,
                 ),
               ),
               openBuilder: (context, action) => const StepsDetailsScreen(),
@@ -73,8 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               borderRadius: BorderRadius.circular(16.r)),
                           child: Text(
                             "Meal",
-                            style: GoogleFonts.poppins(
-                                fontSize: 20.sp, fontWeight: FontWeight.w500),
+                            style: mediumText2,
                           ),
                         ),
                     openBuilder: (context, action) =>
@@ -88,8 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(16.r)),
                   child: Text(
                     "Water",
-                    style: GoogleFonts.poppins(
-                        fontSize: 20.sp, fontWeight: FontWeight.w500),
+                    style: mediumText2,
                   ),
                 ),
               ],
@@ -106,8 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 80.h,
               child: Text(
                 "BPM",
-                style: GoogleFonts.poppins(
-                    fontSize: 20.sp, fontWeight: FontWeight.w500),
+                style: mediumText2,
               ),
             ),
             SizedBox(
@@ -127,8 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               borderRadius: BorderRadius.circular(16.r)),
                           child: Text(
                             "Workout",
-                            style: GoogleFonts.poppins(
-                                fontSize: 20.sp, fontWeight: FontWeight.w500),
+                            style: mediumText2,
                           ),
                         ),
                     openBuilder: (context, action) => const WorkoutScreen()),
@@ -143,8 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               borderRadius: BorderRadius.circular(16.r)),
                           child: Text(
                             "Workout History",
-                            style: GoogleFonts.poppins(
-                                fontSize: 20.sp, fontWeight: FontWeight.w500),
+                            style: mediumText2,
                             textAlign: TextAlign.center,
                           ),
                         ),

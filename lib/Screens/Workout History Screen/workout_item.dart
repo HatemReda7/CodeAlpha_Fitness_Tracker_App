@@ -1,12 +1,12 @@
 import 'package:codealpha_fitness_tracker_app/Shared/FireBase/firebase_functions.dart';
+import 'package:codealpha_fitness_tracker_app/Shared/Styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../models/workout_model.dart';
 
 class WorkoutItem extends StatelessWidget {
-  WorkoutModel workoutModel;
-  WorkoutItem({required this.workoutModel,super.key});
+  final WorkoutModel workoutModel;
+  const WorkoutItem({required this.workoutModel,super.key});
 
 
 
@@ -21,21 +21,15 @@ class WorkoutItem extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(workoutModel.workoutName,style: GoogleFonts.poppins(
-                  fontSize: 18.sp, fontWeight: FontWeight.w700),),
+              Text(workoutModel.workoutName,style: mediumText.copyWith(fontWeight: FontWeight.w700),),
               SizedBox(height: 10.h,),
-              Text(workoutModel.workoutComponents,style: GoogleFonts.poppins(
-                  fontSize: 16.sp, fontWeight: FontWeight.w500),),
+              Text(workoutModel.workoutComponents,style: smallText,),
               SizedBox(height: 10.h,),
-              Text("Number Of Sets:    ${workoutModel.numOfSets}",style: GoogleFonts.poppins(
-                  fontSize: 16.sp, fontWeight: FontWeight.w500),),
+              Text("Number Of Sets:    ${workoutModel.numOfSets}",style: smallText,),
               SizedBox(height: 10.h,),
-              Text(
-                "Number Of Reps:   ${workoutModel.numOfReps}",style: GoogleFonts.poppins(
-                  fontSize: 16.sp, fontWeight: FontWeight.w500),),
+              Text("Number Of Reps:   ${workoutModel.numOfReps}",style: smallText,),
               SizedBox(height: 10.h,),
-              Text(DateTime.fromMillisecondsSinceEpoch(workoutModel.date).toString().substring(0,16),style: GoogleFonts.poppins(
-                  fontSize: 14.sp, fontWeight: FontWeight.w400),),
+              Text(DateTime.fromMillisecondsSinceEpoch(workoutModel.date).toString().substring(0,16),style: verySmallText,),
             ],
           ),
           const Spacer(),

@@ -1,3 +1,5 @@
+import 'package:codealpha_fitness_tracker_app/Shared/Constants/arrow_back_item.dart';
+import 'package:codealpha_fitness_tracker_app/Shared/Styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,14 +27,8 @@ class _MealTrackerScreenState extends State<MealTrackerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Meal Tracker",style: GoogleFonts.poppins(
-            fontSize: 22.sp, fontWeight: FontWeight.w500),),
-        centerTitle: true,
-        leading: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Icon(Icons.arrow_back_rounded,size: 22.sp,)),
+        title: const Text("Meal Tracker"),
+        leading: const ArrowBackItem(),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -48,20 +44,11 @@ class _MealTrackerScreenState extends State<MealTrackerScreen> {
                   }
                   return null;
                 },
-                style: GoogleFonts.inter(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16.sp),
+                style: textFormFieldLabelStyle,
                 controller: mealNameController,
                 decoration: InputDecoration(
-                  label: Text(
-                    "Enter Meal Name",
-                    textAlign: TextAlign.left,
-                    style: GoogleFonts.poppins(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w300,
-                        fontSize: 16.sp),
-                  ),
+                  label: const Text("Enter Meal Name",),
+                  labelStyle: textFormFieldLabelStyle,
                   constraints:
                   BoxConstraints(maxWidth: 200.w),
                   enabledBorder: OutlineInputBorder(
@@ -74,10 +61,6 @@ class _MealTrackerScreenState extends State<MealTrackerScreen> {
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12.r),
                   ),
-                  hintStyle: GoogleFonts.inter(
-                      color: const Color(0xffA9A9A9).withOpacity(.61),
-                      fontWeight: FontWeight.w400,
-                      fontSize: 20.sp),
                 ),
               ),
               SizedBox(
@@ -98,14 +81,8 @@ class _MealTrackerScreenState extends State<MealTrackerScreen> {
                     fontSize: 16.sp),
                 controller: mealComponentController,
                 decoration: InputDecoration(
-                  label: Text(
-                    "Enter Meal Components",
-                    textAlign: TextAlign.left,
-                    style: GoogleFonts.poppins(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w300,
-                        fontSize: 16.sp),
-                  ),
+                  label: const Text("Enter Meal Components"),
+                  labelStyle: textFormFieldLabelStyle,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12.r),
                   ),
@@ -116,15 +93,9 @@ class _MealTrackerScreenState extends State<MealTrackerScreen> {
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12.r),
                   ),
-                  hintStyle: GoogleFonts.inter(
-                      color: const Color(0xffA9A9A9).withOpacity(.61),
-                      fontWeight: FontWeight.w400,
-                      fontSize: 20.sp),
                 ),
               ),
-              SizedBox(
-                height: 30.h,
-              ),
+              SizedBox(height: 30.h,),
               ElevatedButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
