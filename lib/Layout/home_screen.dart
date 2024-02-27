@@ -1,4 +1,5 @@
 import 'package:animations/animations.dart';
+import 'package:codealpha_fitness_tracker_app/Screens/Water%20Tracking%20Screen/water_tracking_screen.dart';
 import 'package:codealpha_fitness_tracker_app/Shared/Styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -73,18 +74,21 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                     openBuilder: (context, action) =>
                         const MealTrackerScreen()),
-                Container(
-                  height: 100.h,
-                  width: 150.w,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      color: Colors.blueAccent,
-                      borderRadius: BorderRadius.circular(16.r)),
-                  child: Text(
-                    "Water",
-                    style: mediumText2,
-                  ),
-                ),
+                OpenContainer(
+                    closedElevation: 0,
+                    closedBuilder: (context, action) => Container(
+                      height: 100.h,
+                      width: 150.w,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: Colors.blueAccent,
+                          borderRadius: BorderRadius.circular(16.r)),
+                      child: Text(
+                        "Hydration",
+                        style: mediumText2,
+                      ),
+                    ),
+                    openBuilder: (context, action) => const WaterTrackingScreen()),
               ],
             ),
             SizedBox(
