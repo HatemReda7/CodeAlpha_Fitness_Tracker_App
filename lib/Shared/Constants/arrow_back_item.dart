@@ -10,6 +10,6 @@ class ArrowBackItem extends StatelessWidget {
         onTap: () {
           Navigator.pop(context);
         },
-        child: Icon(Icons.arrow_back_rounded,size: 22.sp,));
+        child: Icon(Icons.arrow_back_rounded,size: 24.sp,color: Colors.white,));
   }
 }
