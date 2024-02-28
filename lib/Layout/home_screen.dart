@@ -123,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: mediumText2,
                       ),
                     ),
-                openBuilder: (context, action) => HeartRateScreen()),
+                openBuilder: (context, action) => const HeartRateScreen()),
             SizedBox(
               height: 30.h,
             ),

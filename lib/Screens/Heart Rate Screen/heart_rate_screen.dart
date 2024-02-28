@@ -5,7 +5,7 @@ import '../../Shared/Constants/arrow_back_item.dart';
 import '../../Shared/Styles/text_styles.dart';
 
 class HeartRateScreen extends StatefulWidget {
-  HeartRateScreen({super.key});
+  const HeartRateScreen({super.key});
 
   @override
   State<HeartRateScreen> createState() => _HeartRateScreenState();
@@ -122,7 +122,6 @@ class _HeartRateScreenState extends State<HeartRateScreen> {
   }
 
   String? heartBeatRateCheck(int userAge) {
-    if (userAge != null) {
       int lowerRate;
       int upperRate;
 
@@ -165,10 +164,6 @@ class _HeartRateScreenState extends State<HeartRateScreen> {
       } else {
         return "No corresponding heart rate range found for the entered age.";
       }
-
       return "Estimated heart rate range: $lowerRate - $upperRate bpm";
-    } else {
-      return "Invalid age input.";
-    }
   }
 }
