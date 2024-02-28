@@ -72,19 +72,19 @@ class _StopwatchAppState extends State<StopwatchApp> {
       children: [
         Text(
           _formatElapsedTime(_elapsedTime),
-          style: TextStyle(fontSize: 24.sp),
+          style: TextStyle(fontSize: 24.sp,color: Colors.black87),
         ),
         SizedBox(width: 20.w),
         ElevatedButton(
           onPressed: _isRunning ? _stopStopwatch : _startStopwatch,
-          child: Text(_isRunning ? 'Stop' : 'Start', style: smallText),
+          child: Text(_isRunning ? 'Stop' : 'Start', style: smallText.copyWith(color: Colors.black87)),
         ),
-        SizedBox(width: 15.w),
+        SizedBox(width: 10.w),
         ElevatedButton(
           onPressed: _resetStopwatch,
           child: Text(
             'Reset',
-            style: smallText,
+            style: smallText.copyWith(color: Colors.black87),
           ),
         ),
       ],

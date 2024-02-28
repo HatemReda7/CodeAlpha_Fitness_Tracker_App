@@ -71,14 +71,14 @@ class _StepsDetailsScreenState extends State<StepsDetailsScreen> {
                         child: Container(
                           margin: EdgeInsets.all(12.r),
                           height: 50.h,
-                          width: 150.w,
+                          width: 200.w,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                              color: Colors.grey,
+                              color: Colors.black26,
                               borderRadius: BorderRadius.circular(50)),
                           child: Text(
                             "${index + 1}) ${DateTime.fromMillisecondsSinceEpoch(stopwatch[index].time).toString().substring(14, 22)}",
-                            style: smallText,
+                            style: mediumText,
                           ),
                         ),
                       );
