@@ -1,8 +1,8 @@
-import 'package:codealpha_fitness_tracker_app/Shared/Constants/arrow_back_item.dart';
-import 'package:codealpha_fitness_tracker_app/Shared/Styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../Shared/Constants/arrow_back_item.dart';
 import '../../Shared/FireBase/firebase_functions.dart';
+import '../../Shared/Styles/text_styles.dart';
 import '../../models/workout_model.dart';
 import 'workout_item.dart';
 
@@ -31,16 +31,21 @@ class WorkoutHistoryScreen extends StatelessWidget {
                 if (snapshot.hasError) {
                   return const Center(
                       child: Text(
-                        "Something went wrong",
-                        style: TextStyle(color: Colors.black),
-                      ));
+                    "Something went wrong",
+                    style: TextStyle(color: Colors.black),
+                  ));
                 }
                 List<WorkoutModel> workouts =
                     snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
                 if (workouts.isEmpty) {
                   return Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.h),
-                    child: Center(child: Text("No Workout History",style: smallText,),),
+                    child: Center(
+                      child: Text(
+                        "No Workout History",
+                        style: smallText,
+                      ),
+                    ),
                   );
                 }
                 return Expanded(
@@ -61,7 +66,7 @@ class WorkoutHistoryScreen extends StatelessWidget {
                   },
                   style: ButtonStyle(
                       backgroundColor:
-                      const MaterialStatePropertyAll(Colors.red),
+                          const MaterialStatePropertyAll(Colors.red),
                       fixedSize: MaterialStatePropertyAll(Size(200.w, 50.h)),
                       shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.r)))),

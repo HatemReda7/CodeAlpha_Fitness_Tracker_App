@@ -1,16 +1,16 @@
 import 'package:animations/animations.dart';
-import 'package:codealpha_fitness_tracker_app/Screens/BPM%20Screen/bpm_screen.dart';
-import 'package:codealpha_fitness_tracker_app/Screens/Settings%20Screen/setting_screen.dart';
-import 'package:codealpha_fitness_tracker_app/Screens/Water%20Tracking%20Screen/water_tracking_screen.dart';
-import 'package:codealpha_fitness_tracker_app/Shared/Styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../Provider/my_provider.dart';
+import '../Screens/Heart Rate Screen/heart_rate_screen.dart';
 import '../Screens/Meal Tracker Screen/meal_tracker_screen.dart';
+import '../Screens/Settings Screen/setting_screen.dart';
 import '../Screens/Step Tracking Screen/steps_tracker_screen.dart';
+import '../Screens/Water Tracking Screen/water_tracking_screen.dart';
 import '../Screens/Workout History Screen/workout_history_screen.dart';
 import '../Screens/Workout Screen/workout_screen.dart';
+import '../Shared/Styles/text_styles.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "HomeScreen";
@@ -34,7 +34,12 @@ class _HomeScreenState extends State<HomeScreen> {
             child: OpenContainer(
                 closedColor: Colors.transparent,
                 closedElevation: 0,
-                closedBuilder: (context, action) => Icon(Icons.settings,size: 30.sp,color: Colors.white,), openBuilder: (context, action) => const SettingsTab()),
+                closedBuilder: (context, action) => Icon(
+                      Icons.settings,
+                      size: 30.sp,
+                      color: Colors.white,
+                    ),
+                openBuilder: (context, action) => const SettingsTab()),
           )
         ],
         title: const Text(
@@ -87,35 +92,38 @@ class _HomeScreenState extends State<HomeScreen> {
                 OpenContainer(
                     closedElevation: 0,
                     closedBuilder: (context, action) => Container(
-                      height: 120.h,
-                      width: 150.w,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          color: Colors.blueAccent,
-                          borderRadius: BorderRadius.circular(16.r)),
-                      child: Text(
-                        "Hydration",
-                        style: mediumText2,
-                      ),
-                    ),
-                    openBuilder: (context, action) => const WaterTrackingScreen()),
+                          height: 120.h,
+                          width: 150.w,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Colors.blueAccent,
+                              borderRadius: BorderRadius.circular(16.r)),
+                          child: Text(
+                            "Hydration",
+                            style: mediumText2,
+                          ),
+                        ),
+                    openBuilder: (context, action) =>
+                        const WaterTrackingScreen()),
               ],
             ),
             SizedBox(
               height: 30.h,
             ),
-            OpenContainer(closedBuilder: (context, action) => Container(
-              decoration: BoxDecoration(
-                color: Colors.redAccent,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              alignment: Alignment.center,
-              height: 100.h,
-              child: Text(
-                "Heart Rate Information",
-                style: mediumText2,
-              ),
-            ), openBuilder: (context, action) => HeartRateScreen()),
+            OpenContainer(
+                closedBuilder: (context, action) => Container(
+                      decoration: BoxDecoration(
+                        color: Colors.redAccent,
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      alignment: Alignment.center,
+                      height: 100.h,
+                      child: Text(
+                        "Heart Rate Information",
+                        style: mediumText2,
+                      ),
+                    ),
+                openBuilder: (context, action) => HeartRateScreen()),
             SizedBox(
               height: 30.h,
             ),

@@ -9,16 +9,14 @@ import 'Provider/my_provider.dart';
 import 'firebase_options.dart';
 import 'pref_helper.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   PrefsHelper.prefs = await SharedPreferences.getInstance();
   runApp(ChangeNotifierProvider(
-      create: (context) =>
-      MyProvider()
-        ..init(), child: const MyApp()));
+      create: (context) => MyProvider()..init(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -28,17 +26,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(360, 690),
-      builder: (context, child) =>
-          MaterialApp(
-            theme: MyThemeData.lightTheme,
-            locale: const Locale("en"),
-            debugShowCheckedModeBanner: false,
-            initialRoute: HomeScreen.routeName,
-            routes: {
-              // SplashScreen.routeName: (context) => const SplashScreen(),
-              HomeScreen.routeName: (context) => const HomeScreen(),
-            },
-          ),
+      builder: (context, child) => MaterialApp(
+        theme: MyThemeData.lightTheme,
+        locale: const Locale("en"),
+        debugShowCheckedModeBanner: false,
+        initialRoute: HomeScreen.routeName,
+        routes: {
+          // SplashScreen.routeName: (context) => const SplashScreen(),
+          HomeScreen.routeName: (context) => const HomeScreen(),
+        },
+      ),
     );
   }
 }

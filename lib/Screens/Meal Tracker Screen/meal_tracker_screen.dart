@@ -16,7 +16,6 @@ class MealTrackerScreen extends StatefulWidget {
 }
 
 class _MealTrackerScreenState extends State<MealTrackerScreen> {
-
   var formKey = GlobalKey<FormState>();
   TextEditingController mealNameController = TextEditingController();
   TextEditingController mealComponentController = TextEditingController();
@@ -47,10 +46,11 @@ class _MealTrackerScreenState extends State<MealTrackerScreen> {
                 style: textFormFieldLabelStyle,
                 controller: mealNameController,
                 decoration: InputDecoration(
-                  label: const Text("Enter Meal Name",),
+                  label: const Text(
+                    "Enter Meal Name",
+                  ),
                   labelStyle: textFormFieldLabelStyle,
-                  constraints:
-                  BoxConstraints(maxWidth: 200.w),
+                  constraints: BoxConstraints(maxWidth: 200.w),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12.r),
                   ),
@@ -74,7 +74,8 @@ class _MealTrackerScreenState extends State<MealTrackerScreen> {
                   return null;
                 },
                 minLines: 1,
-                maxLines: 3, // 10
+                maxLines: 3,
+                // 10
                 style: GoogleFonts.inter(
                     color: Colors.black,
                     fontWeight: FontWeight.w400,
@@ -95,7 +96,9 @@ class _MealTrackerScreenState extends State<MealTrackerScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 30.h,),
+              SizedBox(
+                height: 30.h,
+              ),
               ElevatedButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
@@ -103,35 +106,40 @@ class _MealTrackerScreenState extends State<MealTrackerScreen> {
                       MealModel mealModel = MealModel(
                           mealName: mealNameController.text,
                           mealComponents: mealComponentController.text,
-                          date: DateTime.now().millisecondsSinceEpoch
-                          );
+                          date: DateTime.now().millisecondsSinceEpoch);
                       FirebaseFunctions.addMeal(mealModel);
                     }
                   },
                   style: ButtonStyle(
-                    backgroundColor: const MaterialStatePropertyAll(Colors.blue),
-                    fixedSize:  MaterialStatePropertyAll(Size(200.w,40.h)),
+                      backgroundColor:
+                          const MaterialStatePropertyAll(Colors.blue),
+                      fixedSize: MaterialStatePropertyAll(Size(200.w, 40.h)),
                       shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.r)))),
                   child: Text(
                     "Add Meal!",
-                    style: TextStyle(fontSize: 18.sp,color: Colors.black),
+                    style: TextStyle(fontSize: 18.sp, color: Colors.black),
                   )),
-              SizedBox(height: 20.h ,),
+              SizedBox(
+                height: 20.h,
+              ),
               ElevatedButton(
                   onPressed: () {
-                      FirebaseFunctions.deleteMealHistory();
+                    FirebaseFunctions.deleteMealHistory();
                   },
                   style: ButtonStyle(
-                    backgroundColor: const MaterialStatePropertyAll(Colors.red),
-                    fixedSize:  MaterialStatePropertyAll(Size(200.w,40.h)),
+                      backgroundColor:
+                          const MaterialStatePropertyAll(Colors.red),
+                      fixedSize: MaterialStatePropertyAll(Size(200.w, 40.h)),
                       shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.r)))),
                   child: Text(
                     "Delete All History",
-                    style: TextStyle(fontSize: 18.sp,color: Colors.black),
+                    style: TextStyle(fontSize: 18.sp, color: Colors.black),
                   )),
-              SizedBox(height: 20.h ,),
+              SizedBox(
+                height: 20.h,
+              ),
               StreamBuilder(
                 stream: FirebaseFunctions.getMeal(),
                 builder: (context, snapshot) {
@@ -141,9 +149,9 @@ class _MealTrackerScreenState extends State<MealTrackerScreen> {
                   if (snapshot.hasError) {
                     return const Center(
                         child: Text(
-                          "Something went wrong",
-                          style: TextStyle(color: Colors.white),
-                        ));
+                      "Something went wrong",
+                      style: TextStyle(color: Colors.white),
+                    ));
                   }
                   List<MealModel> meals =
                       snapshot.data?.docs.map((e) => e.data()).toList() ?? [];

@@ -22,52 +22,76 @@ class _HeartRateScreenState extends State<HeartRateScreen> {
     return Scaffold(
       appBar: AppBar(
           title: const Text("Heart Rate Tracker"),
-          leading: const ArrowBackItem()
-      ),
+          leading: const ArrowBackItem()),
       body: Column(
         children: [
-          SizedBox(height: 40.w,),
-          Text("*Age Ranges from 18 up to 75!*",style: verySmallText.copyWith(fontWeight: FontWeight.w300,color: Colors.red),textAlign: TextAlign.center,),
-          SizedBox(height: 50.w,),
+          SizedBox(
+            height: 40.w,
+          ),
+          Text(
+            "*Age Ranges from 18 up to 75!*",
+            style: verySmallText.copyWith(
+                fontWeight: FontWeight.w300, color: Colors.red),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+            height: 50.w,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Enter Your Age : ",style: smallText,),
-              SizedBox(width: 20.w,),
+              Text(
+                "Enter Your Age : ",
+                style: smallText,
+              ),
+              SizedBox(
+                width: 20.w,
+              ),
               TextFormField(
                 textAlign: TextAlign.center,
                 keyboardType: TextInputType.number,
                 onFieldSubmitted: (value) {
-                  int userAge = int.tryParse(heartRateController.text) ??0;
-                  heartRateBurning= ageCheck(userAge) ?? "";
+                  int userAge = int.tryParse(heartRateController.text) ?? 0;
+                  heartRateBurning = ageCheck(userAge) ?? "";
                   heartRate = heartBeatRateCheck(userAge) ?? "";
                   heartRateController = TextEditingController();
                 },
                 style: smallText,
                 controller: heartRateController,
                 decoration: InputDecoration(
-                    constraints:
-                    BoxConstraints(maxHeight: 20.h, maxWidth: 60.w),
-                    enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black,width: 2)),
-                    errorBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red)),
-                    focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black,width: 2)),
+                  constraints: BoxConstraints(maxHeight: 20.h, maxWidth: 60.w),
+                  enabledBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black, width: 2)),
+                  errorBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red)),
+                  focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black, width: 2)),
                 ),
               ),
             ],
           ),
-          SizedBox(height: 50.w,),
-          Text(heartRateBurning,style: smallText,textAlign: TextAlign.center,),
-          SizedBox(height: 50.w,),
-          Text(heartRate,style: smallText,textAlign: TextAlign.center,),
+          SizedBox(
+            height: 50.w,
+          ),
+          Text(
+            heartRateBurning,
+            style: smallText,
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+            height: 50.w,
+          ),
+          Text(
+            heartRate,
+            style: smallText,
+            textAlign: TextAlign.center,
+          ),
         ],
       ),
     );
   }
 
-  String? ageCheck(int userAge){
+  String? ageCheck(int userAge) {
     if (userAge >= 18 && userAge <= 20) {
       return "Estimated fat-burning heart rate: 140 bpm";
     } else if (userAge >= 21 && userAge <= 25) {
@@ -97,7 +121,7 @@ class _HeartRateScreenState extends State<HeartRateScreen> {
     }
   }
 
-  String? heartBeatRateCheck(int userAge){
+  String? heartBeatRateCheck(int userAge) {
     if (userAge != null) {
       int lowerRate;
       int upperRate;

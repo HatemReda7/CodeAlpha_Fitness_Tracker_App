@@ -1,8 +1,8 @@
-import 'package:codealpha_fitness_tracker_app/Shared/Constants/arrow_back_item.dart';
-import 'package:codealpha_fitness_tracker_app/Shared/Styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../Shared/Constants/arrow_back_item.dart';
 import '../../Shared/FireBase/firebase_functions.dart';
+import '../../Shared/Styles/text_styles.dart';
 import '../../models/workout_model.dart';
 
 class WorkoutScreen extends StatefulWidget {
@@ -49,21 +49,25 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                   cursorColor: Colors.black,
                   controller: workoutNameController,
                   decoration: InputDecoration(
-                    label: const Text("Enter Workout Name",),
+                    label: const Text(
+                      "Enter Workout Name",
+                    ),
                     labelStyle: textFormFieldLabelStyle,
                     constraints: BoxConstraints(maxWidth: 200.w),
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12.r,),
-                      borderSide: BorderSide(width: 1.5.w,color: Colors.black)
-                    ),
+                        borderRadius: BorderRadius.circular(
+                          12.r,
+                        ),
+                        borderSide:
+                            BorderSide(width: 1.5.w, color: Colors.black)),
                     errorBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.r),
-                      borderSide: BorderSide(color: Colors.red,width: 1.5.w),
+                      borderSide: BorderSide(color: Colors.red, width: 1.5.w),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12.r),
-                        borderSide: BorderSide(width: 1.5.w,color: Colors.black)
-                    ),
+                        borderRadius: BorderRadius.circular(12.r),
+                        borderSide:
+                            BorderSide(width: 1.5.w, color: Colors.black)),
                   ),
                 ),
                 SizedBox(
@@ -77,32 +81,37 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                     return null;
                   },
                   minLines: 1,
-                  maxLines: 3, // 10
+                  maxLines: 3,
+                  // 10
                   style: textFormFieldLabelStyle,
                   controller: workoutComponentController,
                   cursorColor: Colors.black,
                   decoration: InputDecoration(
-                    label: const Text("Enter Workout Components",),
+                    label: const Text(
+                      "Enter Workout Components",
+                    ),
                     labelStyle: textFormFieldLabelStyle,
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12.r),
-                      borderSide: BorderSide(width: 1.5.w,color: Colors.black)
-                    ),
+                        borderRadius: BorderRadius.circular(12.r),
+                        borderSide:
+                            BorderSide(width: 1.5.w, color: Colors.black)),
                     errorBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.r),
-                      borderSide: BorderSide(color: Colors.red,width: 1.5.w),
+                      borderSide: BorderSide(color: Colors.red, width: 1.5.w),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12.r),
-                      borderSide: BorderSide(width: 1.5.w,color: Colors.black)
-                    ),
+                        borderRadius: BorderRadius.circular(12.r),
+                        borderSide:
+                            BorderSide(width: 1.5.w, color: Colors.black)),
                   ),
                 ),
                 SizedBox(
                   height: 20.h,
                 ),
                 Text("Enter Number Of Sets", style: smallText),
-                SizedBox(height: 10.h,),
+                SizedBox(
+                  height: 10.h,
+                ),
                 TextFormField(
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -119,18 +128,23 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                     constraints:
                         BoxConstraints(maxHeight: 30.h, maxWidth: 60.w),
                     enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black,width: 1.5.w)),
+                        borderSide:
+                            BorderSide(color: Colors.black, width: 1.5.w)),
                     errorBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red,width: 1.5.w)),
+                        borderSide:
+                            BorderSide(color: Colors.red, width: 1.5.w)),
                     focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black,width: 1.5.w)),
+                        borderSide:
+                            BorderSide(color: Colors.black, width: 1.5.w)),
                   ),
                 ),
                 SizedBox(
                   height: 30.h,
                 ),
                 Text(
-                  "Enter Number Of Reps",style: smallText,),
+                  "Enter Number Of Reps",
+                  style: smallText,
+                ),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -150,11 +164,14 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                     constraints:
                         BoxConstraints(maxHeight: 30.h, maxWidth: 60.w),
                     enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black,width: 1.5.w)),
+                        borderSide:
+                            BorderSide(color: Colors.black, width: 1.5.w)),
                     errorBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red,width: 1.5.w)),
+                        borderSide:
+                            BorderSide(color: Colors.red, width: 1.5.w)),
                     focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black,width: 1.5.w)),
+                        borderSide:
+                            BorderSide(color: Colors.black, width: 1.5.w)),
                   ),
                 ),
                 SizedBox(

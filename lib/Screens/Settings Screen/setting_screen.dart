@@ -26,15 +26,25 @@ class _SettingsTabState extends State<SettingsTab> {
         leading: const ArrowBackItem(),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 30.0.h,horizontal: 20.w),
+        padding: EdgeInsets.symmetric(vertical: 30.0.h, horizontal: 20.w),
         child: Column(
           children: [
-            Text("Your Personal Information",style: mediumText,),
-            SizedBox(height: 60.h,),
+            Text(
+              "Your Personal Information",
+              style: mediumText,
+            ),
+            SizedBox(
+              height: 60.h,
+            ),
             Row(
               children: [
-                Text("Enter Your Weight: ",style: smallText,),
-                SizedBox(width: 20.w,),
+                Text(
+                  "Enter Your Weight: ",
+                  style: smallText,
+                ),
+                SizedBox(
+                  width: 20.w,
+                ),
                 TextFormField(
                   textAlign: TextAlign.center,
                   keyboardType: TextInputType.number,
@@ -46,26 +56,39 @@ class _SettingsTabState extends State<SettingsTab> {
                   controller: weightController,
                   decoration: InputDecoration(
                       constraints:
-                      BoxConstraints(maxHeight: 20.h, maxWidth: 40.w),
+                          BoxConstraints(maxHeight: 20.h, maxWidth: 40.w),
                       enabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black,width: 2)),
+                          borderSide:
+                              BorderSide(color: Colors.black, width: 2)),
                       errorBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.red)),
                       focusedBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black,width: 2)),
-                    hintText: pro.weight,
-                    hintStyle: smallText.copyWith(color: Colors.black)
-                  ),
+                          borderSide:
+                              BorderSide(color: Colors.black, width: 2)),
+                      hintText: pro.weight,
+                      hintStyle: smallText.copyWith(color: Colors.black)),
                 ),
-                SizedBox(width: 15.w,),
-                Text("KG",style: smallText,),
+                SizedBox(
+                  width: 15.w,
+                ),
+                Text(
+                  "KG",
+                  style: smallText,
+                ),
               ],
             ),
-            SizedBox(height: 50.h,),
+            SizedBox(
+              height: 50.h,
+            ),
             Row(
               children: [
-                Text("Enter Your Height: ",style: smallText,),
-                SizedBox(width: 20.w,),
+                Text(
+                  "Enter Your Height: ",
+                  style: smallText,
+                ),
+                SizedBox(
+                  width: 20.w,
+                ),
                 TextFormField(
                   textAlign: TextAlign.center,
                   keyboardType: TextInputType.number,
@@ -77,19 +100,25 @@ class _SettingsTabState extends State<SettingsTab> {
                   controller: heightController,
                   decoration: InputDecoration(
                       constraints:
-                      BoxConstraints(maxHeight: 20.h, maxWidth: 40.w),
+                          BoxConstraints(maxHeight: 20.h, maxWidth: 40.w),
                       enabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black,width: 2)),
+                          borderSide:
+                              BorderSide(color: Colors.black, width: 2)),
                       errorBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.red)),
                       focusedBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black,width: 2)),
+                          borderSide:
+                              BorderSide(color: Colors.black, width: 2)),
                       hintText: pro.height,
-                      hintStyle: smallText.copyWith(color: Colors.black)
-                  ),
+                      hintStyle: smallText.copyWith(color: Colors.black)),
                 ),
-                SizedBox(width: 15.w,),
-                Text("CM",style: smallText,),
+                SizedBox(
+                  width: 15.w,
+                ),
+                Text(
+                  "CM",
+                  style: smallText,
+                ),
               ],
             ),
             const Spacer(),
