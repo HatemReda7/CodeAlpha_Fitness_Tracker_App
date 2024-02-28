@@ -39,6 +39,10 @@ class ShowDialogItem extends StatelessWidget {
                       onTap: () {
                         FirebaseFunctions.deleteWorkoutHistory();
                         FirebaseFunctions.deleteMealHistory();
+                        pro.height = "0";
+                        pro.weight = "0.0";
+                        pro.mlDrunk = 0;
+                        pro.waterHeight = 0;
                         pro.stepsCounter = "6000";
                         Navigator.pop(context);
                       },

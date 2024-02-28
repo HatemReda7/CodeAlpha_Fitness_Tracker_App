@@ -18,7 +18,7 @@ class DeleteAllInfoButton extends StatelessWidget {
         },
         style: ButtonStyle(
             backgroundColor: const MaterialStatePropertyAll(Colors.red),
-            fixedSize: MaterialStatePropertyAll(Size(200.w, 50.h)),
+            fixedSize: MaterialStatePropertyAll(Size(250.w, 50.h)),
             shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.r)))),
         child: Text(

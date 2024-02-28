@@ -26,4 +26,20 @@ class PrefsHelper {
   static saveMLDrunk(int ml) async {
     await prefs.setInt("ml Drunk", ml);
   }
+
+  static String? getWeight() {
+    return prefs.getString("Weight");
+  }
+
+  static saveWeight(String weight) async {
+    await prefs.setString("Weight", weight);
+  }
+
+  static String? getHeight() {
+    return prefs.getString("Height");
+  }
+
+  static saveHeight(String oldWeight) async {
+    await prefs.setString("Height", oldWeight);
+  }
 }
