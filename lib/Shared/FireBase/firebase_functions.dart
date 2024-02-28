@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:codealpha_fitness_tracker_app/models/meal_model.dart';
 
+import '../../models/stopwatch_model.dart';
 import '../../models/workout_model.dart';
 
 class FirebaseFunctions {
@@ -94,37 +95,40 @@ class FirebaseFunctions {
     return getWorkoutCollection().snapshots();
   }
 
-//  //
+  //  StopWatch Functions  //
 
-// static CollectionReference<> getQuizCollection(){
-//   return FirebaseFirestore.instance.collection("Quizzes").withConverter<>(
-//     fromFirestore: (snapshot, _) {
-//       return .fromJson(snapshot.data()!);
-//     },
-//     toFirestore: (value, _) {
-//       return value.toJson();
-//     },);
-// }
-//
-// static void deleteQuizCollection()async{
-//   final instance = FirebaseFirestore.instance;
-//   final batch = instance.batch();
-//   var collection = instance.collection('Quizzes');
-//   var snapshots = await collection.get();
-//   for (var doc in snapshots.docs) {
-//     batch.delete(doc.reference);
-//   }
-//   await batch.commit();
-// }
-//
-// static void addScore( quiz){
-//   var collection= getQuizCollection();
-//   var docRef= collection.doc();
-//   quiz.id=docRef.id;
-//   docRef.set(quiz);
-// }
-//
-// static Stream<QuerySnapshot<>> getQuizzes(){
-//   return getQuizCollection().snapshots();
-// }
+  static CollectionReference<StopWatchModel> getStopWatchCollection() {
+    return FirebaseFirestore.instance
+        .collection("StopWatch")
+        .withConverter<StopWatchModel>(
+      fromFirestore: (snapshot, _) {
+        return StopWatchModel.fromJson(snapshot.data()!);
+      },
+      toFirestore: (value, _) {
+        return value.toJson();
+      },
+    );
+  }
+
+  static void addStopWatch(stopWatchModel) {
+    var collection = getStopWatchCollection();
+    var docRef = collection.doc();
+    stopWatchModel.id = docRef.id;
+    docRef.set(stopWatchModel);
+  }
+
+  static void deleteStopWatchHistory() async {
+    final instance = FirebaseFirestore.instance;
+    final batch = instance.batch();
+    var collection = instance.collection('StopWatch');
+    var snapshots = await collection.get();
+    for (var doc in snapshots.docs) {
+      batch.delete(doc.reference);
+    }
+    await batch.commit();
+  }
+
+  static Stream<QuerySnapshot<StopWatchModel>> getStopWatch() {
+    return getStopWatchCollection().orderBy("time").snapshots();
+  }
 }

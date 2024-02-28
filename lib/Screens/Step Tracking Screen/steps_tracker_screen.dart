@@ -1,9 +1,10 @@
-import 'package:codealpha_fitness_tracker_app/Shared/Constants/arrow_back_item.dart';
-import 'package:codealpha_fitness_tracker_app/Shared/Styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
-import '../../Provider/my_provider.dart';
+import '../../Shared/Constants/arrow_back_item.dart';
+import '../../Shared/Constants/stop_watch_item.dart';
+import '../../Shared/FireBase/firebase_functions.dart';
+import '../../Shared/Styles/text_styles.dart';
+import '../../models/stopwatch_model.dart';
 
 class StepsDetailsScreen extends StatefulWidget {
   const StepsDetailsScreen({super.key});
@@ -17,83 +18,75 @@ class _StepsDetailsScreenState extends State<StepsDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var pro = Provider.of<MyProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Steps Tracker"),
-        leading: const ArrowBackItem()
-      ),
+          title: const Text("Steps Tracker"), leading: const ArrowBackItem()),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
         child: Column(
           children: [
             Container(
               decoration: BoxDecoration(
                 color: Colors.greenAccent,
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(40),
               ),
               alignment: Alignment.center,
-              height: 80.h,
-              width: 200.w,
-              child: Text(
-                "2064 / ${pro.stepsCounter} steps",
-                style: mediumText,
-              ),
+              height: 60.h,
+              width: 400.w,
+              child: const StopwatchApp(),
             ),
             SizedBox(
-              height: 50.h,
+              height: 10.h,
             ),
-            Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Enter your target steps",
-                      style: smallText,
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    TextFormField(
-                      textAlign: TextAlign.center,
-                      keyboardType: TextInputType.number,
-                      onFieldSubmitted: (value) {
-                        pro.changeSteps(stepController.text);
-                        stepController = TextEditingController();
-                      },
-                      style: textFormFieldLabelStyle,
-                      controller: stepController,
-                      decoration: InputDecoration(
-                        constraints:
-                            BoxConstraints(maxHeight: 30.h, maxWidth: 150.w),
-                        enabledBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black38,width: 2)),
-                        errorBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.red)),
-                        focusedBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black38,width: 2))
+            StreamBuilder(
+              stream: FirebaseFunctions.getStopWatch(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                if (snapshot.hasError) {
+                  return const Center(
+                      child: Text(
+                    "Something went wrong",
+                    style: TextStyle(color: Colors.black),
+                  ));
+                }
+                List<StopWatchModel> stopwatch =
+                    snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
+                if (stopwatch.isEmpty) {
+                  return Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20.h),
+                    child: Center(
+                      child: Text(
+                        "No Workout History",
+                        style: smallText,
                       ),
                     ),
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              alignment: Alignment.center,
-              height: 40.h,
-              width: 250.w,
-              child: Text(
-                "Reset Steps",
-                style: mediumText,
-              ),
+                  );
+                }
+                return Expanded(
+                  child: ListView.builder(
+                    itemBuilder: (context, index) {
+                      return Center(
+                        child: Container(
+                          margin: EdgeInsets.all(12.r),
+                          height: 50.h,
+                          width: 150.w,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Text(
+                            "${index + 1}) ${DateTime.fromMillisecondsSinceEpoch(stopwatch[index].time).toString().substring(14, 22)}",
+                            style: smallText,
+                          ),
+                        ),
+                      );
+                    },
+                    itemCount: stopwatch.length,
+                  ),
+                );
+              },
             ),
           ],
         ),

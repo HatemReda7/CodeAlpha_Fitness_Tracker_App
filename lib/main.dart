@@ -1,4 +1,3 @@
-import 'package:codealpha_fitness_tracker_app/Shared/Styles/my_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Layout/home_screen.dart';
 import 'Provider/my_provider.dart';
+import 'Shared/Styles/my_theme.dart';
 import 'firebase_options.dart';
 import 'pref_helper.dart';
 

@@ -1,8 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
-import '../Provider/my_provider.dart';
 import '../Screens/Heart Rate Screen/heart_rate_screen.dart';
 import '../Screens/Meal Tracker Screen/meal_tracker_screen.dart';
 import '../Screens/Settings Screen/setting_screen.dart';
@@ -10,6 +8,7 @@ import '../Screens/Step Tracking Screen/steps_tracker_screen.dart';
 import '../Screens/Water Tracking Screen/water_tracking_screen.dart';
 import '../Screens/Workout History Screen/workout_history_screen.dart';
 import '../Screens/Workout Screen/workout_screen.dart';
+import '../Shared/Constants/stop_watch_item.dart';
 import '../Shared/Styles/text_styles.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -24,7 +23,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    var pro = Provider.of<MyProvider>(context);
     return Scaffold(
       // drawer: const DrawerTab(),
       appBar: AppBar(
@@ -51,24 +49,24 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            SizedBox(
+              height: 10.h,
+            ),
             OpenContainer(
               closedElevation: 0,
               closedBuilder: (context, action) => Container(
                 decoration: BoxDecoration(
                   color: Colors.greenAccent,
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(50),
                 ),
                 alignment: Alignment.center,
-                height: 100.h,
-                child: Text(
-                  "2041 / ${pro.stepsCounter} steps",
-                  style: mediumText2,
-                ),
+                height: 80.h,
+                child: const StopwatchApp(),
               ),
               openBuilder: (context, action) => const StepsDetailsScreen(),
             ),
             SizedBox(
-              height: 30.h,
+              height: 35.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -108,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             SizedBox(
-              height: 30.h,
+              height: 35.h,
             ),
             OpenContainer(
                 closedBuilder: (context, action) => Container(
@@ -125,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                 openBuilder: (context, action) => const HeartRateScreen()),
             SizedBox(
-              height: 30.h,
+              height: 35.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
