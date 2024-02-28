@@ -1,4 +1,5 @@
 import 'package:animations/animations.dart';
+import 'package:codealpha_fitness_tracker_app/Screens/BPM%20Screen/bpm_screen.dart';
 import 'package:codealpha_fitness_tracker_app/Screens/Settings%20Screen/setting_screen.dart';
 import 'package:codealpha_fitness_tracker_app/Screens/Water%20Tracking%20Screen/water_tracking_screen.dart';
 import 'package:codealpha_fitness_tracker_app/Shared/Styles/text_styles.dart';
@@ -53,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   borderRadius: BorderRadius.circular(16),
                 ),
                 alignment: Alignment.center,
-                height: 80.h,
+                height: 100.h,
                 child: Text(
                   "2041 / ${pro.stepsCounter} steps",
                   style: mediumText2,
@@ -62,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
               openBuilder: (context, action) => const StepsDetailsScreen(),
             ),
             SizedBox(
-              height: 40.h,
+              height: 30.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -70,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 OpenContainer(
                     closedElevation: 0,
                     closedBuilder: (context, action) => Container(
-                          height: 100.h,
+                          height: 120.h,
                           width: 150.w,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -86,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 OpenContainer(
                     closedElevation: 0,
                     closedBuilder: (context, action) => Container(
-                      height: 100.h,
+                      height: 120.h,
                       width: 150.w,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
@@ -101,22 +102,22 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             SizedBox(
-              height: 40.h,
+              height: 30.h,
             ),
-            Container(
+            OpenContainer(closedBuilder: (context, action) => Container(
               decoration: BoxDecoration(
-                color: Colors.blueGrey,
+                color: Colors.redAccent,
                 borderRadius: BorderRadius.circular(16),
               ),
               alignment: Alignment.center,
-              height: 80.h,
+              height: 100.h,
               child: Text(
-                "BPM",
+                "Heart Rate Information",
                 style: mediumText2,
               ),
-            ),
+            ), openBuilder: (context, action) => HeartRateScreen()),
             SizedBox(
-              height: 40.h,
+              height: 30.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -124,11 +125,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 OpenContainer(
                     closedElevation: 0,
                     closedBuilder: (context, action) => Container(
-                          height: 100.h,
+                          height: 120.h,
                           width: 150.w,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                              color: Colors.yellow,
+                              color: Colors.deepOrangeAccent,
                               borderRadius: BorderRadius.circular(16.r)),
                           child: Text(
                             "Workout",
@@ -139,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 OpenContainer(
                     closedElevation: 0,
                     closedBuilder: (context, action) => Container(
-                          height: 100.h,
+                          height: 120.h,
                           width: 150.w,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
